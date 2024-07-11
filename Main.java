@@ -4,5 +4,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la frase a codificar: ");
         String frase = sc.nextLine();
+        
+        sc.close();
     }
 }
