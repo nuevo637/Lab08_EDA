@@ -1,10 +1,9 @@
 
-public interface List<E> extends Iterable<E>{
-  void add(E e);
-  E getFirst();
-  E getLast();
-  E removeFirst();
-  void addLast(E e);
-  boolean isEmpty();
-
+public interface List<T> extends Iterable<T>{
+    void add(T e);
+    T getFirst();
+    T getLast();
+    T removeFirst();
+    void addLast(T e);
+    boolean isEmpty();
 }
