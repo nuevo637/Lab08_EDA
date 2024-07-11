@@ -1,5 +1,6 @@
-public class ListaEnlazada<T> {
-    // Nodo interno de la lista
+import java.util.Iterator;
+
+public class ListaEnlazada<T> implements List<T> {
     private class Nodo {
         T dato;
         Nodo siguiente;
@@ -16,6 +17,7 @@ public class ListaEnlazada<T> {
         this.cabeza = null;
     }
 
+    @Override
     public void add(T dato) {
         Nodo nuevoNodo = new Nodo(dato);
         if (cabeza == null) {
@@ -29,22 +31,66 @@ public class ListaEnlazada<T> {
         }
     }
 
-    public void delete(T dato) {
-        if (cabeza == null) return;
-
-        if (cabeza.dato.equals(dato)) {
-            cabeza = cabeza.siguiente;
-            return;
+    @Override
+    public T getFirst() {
+        if (cabeza == null) {
+            return null;
         }
+        return cabeza.dato;
+    }
 
+    @Override
+    public T getLast() {
+        if (cabeza == null) {
+            return null;
+        }
         Nodo actual = cabeza;
-        while (actual.siguiente != null && !actual.siguiente.dato.equals(dato)) {
+        while (actual.siguiente != null) {
             actual = actual.siguiente;
         }
+        return actual.dato;
+    }
 
-        if (actual.siguiente != null) {
-            actual.siguiente = actual.siguiente.siguiente;
+    @Override
+    public T removeFirst() {
+        if (cabeza == null) {
+            return null;
         }
+        T datoEliminado = cabeza.dato;
+        cabeza = cabeza.siguiente;
+        return datoEliminado;
+    }
+
+    @Override
+    public void addLast(T dato) {
+        add(dato);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return cabeza == null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Nodo actual = cabeza;
+
+            @Override
+            public boolean hasNext() {
+                return actual != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new java.util.NoSuchElementException();
+                }
+                T dato = actual.dato;
+                actual = actual.siguiente;
+                return dato;
+            }
+        };
     }
 
     public boolean search(T dato) {
