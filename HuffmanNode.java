@@ -1,41 +1,34 @@
-public class HuffmanNode {
-
-  private int frequency;
-  private char character;
-  private HuffmanNode next;
-  // HuffmanNode left;
-  // HuffmanNode right;
-
-  public HuffmanNode(char character) {
-    this.character = character;
-    this.frequency = 1;
+class HuffmanNode {
+  int frequency;       // Frecuencia del carácter o suma de frecuencias en el nodo interno
+  char character;      // Carácter representado por el nodo (solo para nodos hoja)
+  HuffmanNode left;    // Referencia al hijo izquierdo
+  HuffmanNode right;   // Referencia al hijo derecho
+  
+  // Constructor para nodos hoja (caracteres)
+  HuffmanNode(char character, int frequency) {
+      this.character = character;
+      this.frequency = frequency;
+  }
+  
+  // Constructor para nodos internos (suma de frecuencias)
+  HuffmanNode(int frequency, HuffmanNode left, HuffmanNode right) {
+      this.frequency = frequency;
+      this.left = left;
+      this.right = right;
+  }
+  
+  // Método para verificar si un nodo es una hoja (no tiene hijos)
+  boolean isLeaf() {
+      return left == null && right == null;
   }
 
-  public char getChar() {
-    return this.character;
-  }
-
-  public int getFrequency() {
-    return this.frequency;
-  }
-
-  public HuffmanNode getNext() {
-    return this.next;
-  }
-
-  public void setChar(char character) {
-    this.character = character;
-  }
-
-  public void setFrequency(int frequency) {
-    this.frequency = frequency;
-  }
-
-  public void setNext(HuffmanNode next) {
-    this.next = next;
-  }
-
-  public void addOneFreq() {
-    this.frequency++;
-  }
+  //Imprimir
+  @Override
+    public String toString() {
+        if (isLeaf()) {
+            return "(" + character + ", " + frequency + ")";
+        } else {
+            return "(Internal, " + frequency + ")";
+        }
+    }
 }
