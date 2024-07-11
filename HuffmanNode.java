@@ -1,4 +1,4 @@
-public class HuffmanNode {
+public class HuffmanNode implements Comparable<HuffmanNode>{
 
   private int frequency;
   private char character;
@@ -6,7 +6,7 @@ public class HuffmanNode {
   // HuffmanNode left;
   // HuffmanNode right;
 
-  public HuffmanNode(char character) {
+  public HuffmanNode(char character){
     this.character = character;
     this.frequency = 1;
   }
@@ -37,5 +37,12 @@ public class HuffmanNode {
 
   public void addOneFreq() {
     this.frequency++;
+  }
+
+  @Override
+  public int compareTo(HuffmanNode o) {
+    if(this.getFrequency() > o.getFrequency()) return 1;
+    if(this.getFrequency() < o.getFrequency()) return -1;
+    return 0;
   }
 }
