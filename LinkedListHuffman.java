@@ -1,7 +1,79 @@
-public class LinkedListHuffman implements List<HuffmanNode>{
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
+public class LinkedListHuffman implements List<HuffmanNode>{
   private HuffmanNode first;
   private HuffmanNode last;
+
+  public LinkedListHuffman() {
+      this.first = null;
+      this.last = null;
+  }
+
+  public void add(HuffmanNode node) {
+    if (isEmpty()) {
+        first = node;
+    } else {
+        last.setNext(node);
+    }
+    last = node;
+  }
+
+  public HuffmanNode getFirst() {
+      if (isEmpty()) {
+          throw new NoSuchElementException("List is empty");
+      }
+      return first;
+  }
+
+  public HuffmanNode getLast() {
+      if (isEmpty()) {
+          throw new NoSuchElementException("List is empty");
+      }
+      return last;
+  }
+
+  public HuffmanNode removeFirst() {
+      if (isEmpty()) {
+          throw new NoSuchElementException("List is empty");
+      }
+      HuffmanNode removedNode = first;
+      first = first.getNext();
+      if (first == null) {
+          last = null;
+      }
+      return removedNode;
+  }
+
+  public void addLast(HuffmanNode node) {
+      add(node);
+  }
+
+  public boolean isEmpty() {
+      return first == null;
+  }
+
+  @Override
+    public Iterator<HuffmanNode> iterator() {
+        return new Iterator<HuffmanNode>() {
+            private HuffmanNode current = first;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public HuffmanNode next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                HuffmanNode node = current;
+                current = current.getNext();
+                return node;
+            }
+        };
+    }
 
   public HuffmanNode getMiddle(HuffmanNode current) {
 
