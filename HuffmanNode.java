@@ -1,48 +1,57 @@
-public class HuffmanNode implements Comparable<HuffmanNode>{
-
-  private int frequency;
+class HuffmanNode implements Comparable<HuffmanNode> {
   private char character;
-  private HuffmanNode next;
-  // HuffmanNode left;
-  // HuffmanNode right;
+  private int frequency;
+  private HuffmanNode left, right, next;
 
-  public HuffmanNode(char character){
-    this.character = character;
-    this.frequency = 1;
+  public HuffmanNode(char character, int frequency) {
+      this.character = character;
+      this.frequency = frequency;
+      this.left = null;
+      this.right = null;
+      this.next = null;
   }
 
-  public char getChar() {
-    return this.character;
+  public HuffmanNode(int frequency) {
+      this.frequency = frequency;
+      this.left = null;
+      this.right = null;
+      this.next = null;
+  }
+
+  public char getCharacter() {
+      return character;
   }
 
   public int getFrequency() {
-    return this.frequency;
+      return frequency;
+  }
+
+  public HuffmanNode getLeft() {
+      return left;
+  }
+
+  public void setLeft(HuffmanNode left) {
+      this.left = left;
+  }
+
+  public HuffmanNode getRight() {
+      return right;
+  }
+
+  public void setRight(HuffmanNode right) {
+      this.right = right;
   }
 
   public HuffmanNode getNext() {
-    return this.next;
-  }
-
-  public void setChar(char character) {
-    this.character = character;
-  }
-
-  public void setFrequency(int frequency) {
-    this.frequency = frequency;
+      return next;
   }
 
   public void setNext(HuffmanNode next) {
-    this.next = next;
-  }
-
-  public void addOneFreq() {
-    this.frequency++;
+      this.next = next;
   }
 
   @Override
   public int compareTo(HuffmanNode o) {
-    if(this.getFrequency() > o.getFrequency()) return 1;
-    if(this.getFrequency() < o.getFrequency()) return -1;
-    return 0;
+      return Integer.compare(this.frequency, o.frequency);
   }
 }
