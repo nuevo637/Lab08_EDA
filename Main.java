@@ -47,10 +47,8 @@ public class Main {
         Map<Character, Integer> frecuencias = new HashMap<>();
 
         for (char c : frase.toCharArray()) {
-            if (Character.isLetterOrDigit(c)) {
-                c = Character.toLowerCase(c);
-                frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
-            }
+            c = Character.toLowerCase(c);
+            frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
         }
 
         return frecuencias;
