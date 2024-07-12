@@ -33,13 +33,13 @@ public class Main {
         }
 
         // Imprimir los códigos de Huffman generados
-        System.out.println("Códigos Huffman generados:");
+        System.out.println("\nCódigos Huffman generados:");
         for (Map.Entry<Character, String> entry : huffmanCodes.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
 
         // Imprimir la frase codificada
-        System.out.println("Frase codificada:");
+        System.out.println("\nFrase codificada:");
         System.out.println(fraseCodificada.toString());
     }
 
