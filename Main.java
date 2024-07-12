@@ -1,15 +1,10 @@
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        Map<Character, Integer> frequencies = new HashMap<>();
-        frequencies.put(' ', 5);
-        frequencies.put('a', 9);
-        frequencies.put('c', 2);
-        frequencies.put('e', 1);
-        frequencies.put('j', 1);
-        frequencies.put('l', 2);
-        frequencies.put('s', 1);
-        frequencies.put('t', 2);
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a phrase to codify:");
+        Map<Character, Integer> frequencies =  calcularFrecuencias(sc.nextLine());
 
         // Crear lista enlazada de nodos de Huffman
         LinkedListHuffman list = new LinkedListHuffman();
@@ -32,5 +27,18 @@ public class Main {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
+
+    private static Map<Character, Integer> calcularFrecuencias(String frase) {
+    Map<Character, Integer> frecuencias = new HashMap<>();
+
+    for (char c : frase.toCharArray()) {
+        if (Character.isLetterOrDigit(c)) {
+            c = Character.toLowerCase(c);
+            frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
+        }
+    }
+
+    return frecuencias;
+  }
 
 }
